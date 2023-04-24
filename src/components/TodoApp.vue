@@ -12,6 +12,9 @@ import TodoList from './TodoList.vue'
 </script>
 
 <style scoped>
-
+  .todo-app {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+  }
 </style>
 

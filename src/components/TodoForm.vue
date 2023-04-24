@@ -1,10 +1,8 @@
-<template>
-  <div>
-    <form @submit.prevent="addAndClearTodo">
-      <input type="text" v-model="todo">
-      <button>Add</button>    
-    </form>    
-  </div>
+<template>  
+  <form class="todo-form" @submit.prevent="addAndClearTodo">
+    <input class="todo-name" type="text" v-model="todo">
+    <button class="btn">Add</button>    
+  </form>   
 </template>
 
 <script setup lang="ts">  
@@ -27,6 +25,21 @@
 </script>
 
 <style scoped>
+  .todo-form {
+    display: flex;
+  }
+  .todo-name {
+    width: 100%;
+    padding: .5rem 1rem;
+  }
+  .btn {
+    padding: .5rem 1rem;
+    color: white;
+    border: none;
+    background-color: cadetblue;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
 
 </style>
 
