@@ -12,7 +12,7 @@ interface NotificationShape {
 export const useNotificationStore = defineStore('notification', {
   state: (): NotificationShape => ({    
     notifications: [],
-    interval: 0          
+    interval: null         
   }),
   actions: {    
     addNotification(item: Notification): void {      
