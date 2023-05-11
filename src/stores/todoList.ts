@@ -1,23 +1,15 @@
-import { defineStore } from "pinia";
-import type { Todo } from '../types';
-
-type Message = {
-  [key: string]: string
-}
+import { defineStore } from 'pinia'
+import type { Todo } from '../types'
 
 interface TodoShape {
   todoList: Todo[],
-  id: number,
-  messages: Message[],
-  interval: number | null   
+  id: number  
 }
 
 export const useTodoListStore = defineStore('todoList', {
   state: (): TodoShape => ({
     todoList: [],
-    id: 0,
-    messages: [],
-    interval: null      
+    id: 0             
   }),
   actions: {
     addTodo(item: string): void {
@@ -29,13 +21,6 @@ export const useTodoListStore = defineStore('todoList', {
     toggleTodoCompleted(id: number): void {
       const todo = this.todoList.find(item => item.id === id)
       if(todo) todo.completed = !todo.completed      
-    },
-    addMessage(item: Message): void {
-      if(this.interval) clearInterval(this.interval)
-      this.messages.push(item)
-    },
-    deleteMessage(time: number) {
-      this.interval = setInterval(() => this.messages.shift(), time)            
-    }
+    }    
   }  
 })

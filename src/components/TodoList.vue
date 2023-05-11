@@ -1,20 +1,21 @@
 <template>    
-  <div class="todo-list" v-for="todo in store.todoList" :key="todo.id">
+  <div class="todo-list" v-for="todo in todoStore.todoList" :key="todo.id">
     <span :class="{ completed: todo.completed }" class="todo-item">{{ todo.item }}</span>
     <div>
-      <span @click.stop="store.toggleTodoCompleted(todo.id)" class="item-btn">&#10004;</span>
+      <span @click.stop="todoStore.toggleTodoCompleted(todo.id)" class="item-btn">&#10004;</span>
       <span @click.stop="deleteTodo(todo.id)" class="item-btn">&#10060;</span>    
     </div> 
   </div>    
 </template>
 <script setup>   
-  import { useTodoListStore } from '@/stores/todoList'  
-  const store = useTodoListStore() 
+  import { useTodoListStore } from '@/stores/todoList'
+  import { useNotificationStore } from '@/stores/notification'  
+  const notificationStore = useNotificationStore()  
+  const todoStore = useTodoListStore() 
   
   const deleteTodo = (id) => {
-    store.deleteTodo(id)
-    store.addMessage({error: 'Wow! You`ve deleted item.'})     
-    store.deleteMessage(2000)
+    todoStore.deleteTodo(id)
+    notificationStore.addNotification({error: 'Wow! You`ve deleted item.'})  
   }
 </script>
 

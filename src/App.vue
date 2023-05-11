@@ -1,10 +1,15 @@
-<template>  
-  <AppMessages />  
+<template>
+  <div v-if="notificationStore.notifications.length">
+    <AppNotifications />  
+  </div>  
   <TodoApp /> 
 </template>
 <script setup lang="ts"> 
   import TodoApp from './components/TodoApp.vue'  
-  import AppMessages from './components/AppMessages.vue'
+  import AppNotifications from './components/AppNotifications.vue'
+  import { useNotificationStore } from '@/stores/notification'  
+
+  const notificationStore = useNotificationStore()
 </script>
 
 <style scoped>

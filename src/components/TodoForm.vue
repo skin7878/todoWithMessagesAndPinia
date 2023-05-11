@@ -8,19 +8,19 @@
 <script setup lang="ts">  
   import { ref } from 'vue'
   import type { Ref } from 'vue'
-  import { useTodoListStore } from '@/stores/todoList'  
-
-  const store = useTodoListStore()  
+  import { useTodoListStore } from '@/stores/todoList'
+  import { useNotificationStore } from '@/stores/notification'  
+  const notificationStore = useNotificationStore()  
+  const todoStore = useTodoListStore()  
 
   const todo: Ref<string> = ref('')
   
     
   const addAndClearTodo = (): void => {        
     if(!todo.value) return 
-    store.addTodo(todo.value)
+    todoStore.addTodo(todo.value)
     todo.value = ''
-    store.addMessage({success: 'Success! You`ve added new item.'})     
-    store.deleteMessage(2000)    
+    notificationStore.addNotification({success: 'Success! You`ve added new item.'})      
   } 
 </script>
 
